@@ -15,5 +15,12 @@ Règles générales : voir `../CLAUDE.md`. Spécifique au frontend :
 - **Montants** : reçus en chaîne, affichés avec `formatMoney` ; pas de `parseFloat` (règle ESLint).
 - **Performance** (NFR-020) : pages publiques statiques ou partiellement prérendues ; images via `next/image`.
 - **Accessibilité** (NFR-070) : chaque nouvelle page a un test axe dans `e2e/`.
+- **UI / Design System** (`docs/design/README.md`) :
+  - partir de l'écran de maquette lié à l'US (tableau « Écrans de maquette par user story ») ; pas de maquette : le signaler ;
+  - n'utiliser que les tokens (`bg-surface`, `text-ink`, `bg-majorelle`, `text-body-sm`, `rounded-md`…) : aucune couleur,
+    police, taille ou ombre en dur ;
+  - assembler avec `@/components/ui` (`Button`, `ButtonLink`, `TextField`, `Amount`, `CardStatus`, `GiftCard`,
+    `RedemptionCode`, `LanguageSwitcher`, `Alert`) ; un nouveau composant réutilisable se propose en revue avant création ;
+  - `variant="gift"` (safran) seulement pour « Offrir / Payer » ; une action principale par écran.
 
 Vérification avant PR : `npm run lint && npm run typecheck && npm test && npm run build && npm run test:e2e`.

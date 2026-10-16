@@ -24,6 +24,7 @@ partenaire. Kadoo prélève une commission de 3 à 10 %. Devise MAD, langues fr-
 | `frontend/` | Next.js 16, TypeScript strict, App Router | `npm run lint && npm run typecheck && npm test && npm run build` |
 | `contracts/openapi.yaml` | Contrat d'API unique (source de vérité) | `cd frontend && npm run gen:api` |
 | `docs/adr/` | Décisions d'architecture | une ADR par décision structurante |
+| `docs/design/` | Design System (tokens, règles UI, maquettes par US) | lire avant tout écran |
 | `docker-compose.yml` | PostgreSQL, Mailpit (emails), WireMock (simulateur PSP) | `docker compose up -d` |
 
 ## Règles non négociables

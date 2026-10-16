@@ -26,7 +26,9 @@ l'US indiquée ; la ligne doit passer à « en place » dans la PR correspondant
 | NFR-051 | Simulateurs | `docker-compose.yml` (Mailpit, WireMock) | en place |
 | NFR-060 | Logs structurés | `logging.structured.format.console: ecs` | en place ; traces OpenTelemetry à ajouter |
 | NFR-061 | Métriques | Actuator + Prometheus | en place (technique) ; métriques métier avec les US |
-| NFR-070 | Accessibilité | axe dans `e2e/i18n.spec.ts` | en place |
+| NFR-070 | Accessibilité | axe dans `e2e/i18n.spec.ts` ; contrastes AA du Design System (`docs/design/`) ; tests `components/ui/ui.test.tsx` | en place |
+| NFR-071 | Mobile, cibles ≥ 44 px | tokens `min-h-control` / `min-h-control-sm`, composants `ui` | en place (composants) ; à vérifier par écran |
 | NFR-080/081 | i18n / RTL | dictionnaires + test de clés `config.test.ts`, tests `dir` Playwright | en place |
+| NFR-082 | Typographie latin + arabe auto-hébergée | `frontend/src/fonts/` (`next/font/local`, sous-ensembles latin et arabe) | en place ; revue native à faire |
 | NFR-100/101 | Livraison / CI | `.github/workflows/`, Dockerfiles | en place (CI) ; déploiement à définir (D-10) |
 | US-038 | Audit append-only | `V2__audit_event.sql` (trigger), `AuditLogIT` | en place |
