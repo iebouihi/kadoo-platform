@@ -1,9 +1,11 @@
 ---
 description: Générer les tests à partir des critères d'acceptation d'une US (sans implémenter)
-argument-hint: US-xxx
+argument-hint: US-xxx ou KAN-yy
 ---
 
-Pour **$ARGUMENTS**, écris uniquement les tests, sans code de production :
+Pour **$ARGUMENTS**, lis d'abord la story dans Jira (serveur MCP `atlassian`, projet `KAN` ; correspondance dans
+`docs/backlog/jira-mapping.md`) : ce sont ses critères d'acceptation qui font foi. Puis écris uniquement les tests,
+sans code de production :
 
 - Un test par critère d'acceptation (AC1, AC2…), nommé en français d'après le comportement attendu.
 - Les cas d'erreur de chaque règle de gestion (RG).
@@ -13,3 +15,4 @@ Pour **$ARGUMENTS**, écris uniquement les tests, sans code de production :
 - Données synthétiques uniquement.
 
 Termine par une matrice `AC → test` et la liste des AC non testables automatiquement (à faire en recette).
+Propose ensuite de poster cette matrice en commentaire sur la story Jira (sans modifier ses critères).

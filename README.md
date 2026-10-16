@@ -5,10 +5,14 @@ par email ou WhatsApp, les bénéficiaires les utilisent chez le partenaire. MAD
 
 > État : **Sprint 0** — socle technique, garde-fous NFR et outillage IA en place ; premier module pilote `i18n`
 > (US-039). Les US métier démarrent au Lot 1 (voir backlog).
+>
+> Backlog : [Jira KAN](https://imadeddineb.atlassian.net/jira/software/projects/KAN) — 13 epics, 60 stories ·
+> correspondance `US-xxx` ↔ `KAN-yy` dans [`docs/backlog/jira-mapping.md`](docs/backlog/jira-mapping.md).
 
 ## Démarrer
 
-Prérequis : Java 21, Maven 3.9+, Node.js 22+, Docker.
+Prérequis : Java 21, Maven 3.9+, Node.js 22+, Docker. Poste complet, IDE et licences Claude :
+[`docs/dev/environnement-dev.md`](docs/dev/environnement-dev.md).
 
 ```bash
 docker compose up -d                         # PostgreSQL, Mailpit (http://localhost:8025), WireMock (PSP simulé)
@@ -36,9 +40,10 @@ backend/      Java 21 · Spring Boot 4 · monolithe modulaire (ma.koadooo.<modul
 frontend/     Next.js 16 · TypeScript strict · App Router · routes /[lang]
 contracts/    openapi.yaml — contrat d'API unique (source de vérité)
 docs/
-  backlog/    KOADOOO_Backlog_MVP_v1.2.xlsx — US, règles, décisions, NFR, SDLC IA
+  backlog/    KOADOOO_Backlog_MVP_v1.2.xlsx + jira-mapping.md (US ↔ KAN)
   adr/        décisions d'architecture
-  ai/         politique d'usage de l'IA
+  ai/         politique d'usage de l'IA (dont règles Jira / MCP)
+  dev/        environnement de développement : outils, IDE, licences Claude
   nfr/        traçabilité NFR → code / tests / CI
 infra/        simulateurs locaux (WireMock)
 .claude/      commandes réutilisables pour l'agent de code

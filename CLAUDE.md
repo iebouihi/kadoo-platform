@@ -9,9 +9,12 @@ Plateforme marocaine B2B2C de cartes cadeaux 100 % digitales. Un partenaire publ
 (sans compte) paie et offre une carte, le bénéficiaire la reçoit par email ou WhatsApp et l'utilise chez le
 partenaire. KOADOOO prélève une commission de 3 à 10 %. Devise MAD, langues fr-MA (défaut), ar-MA (RTL), en.
 
-- Backlog fonctionnel (source de vérité) : `docs/backlog/KOADOOO_Backlog_MVP_v1.2.xlsx`
-  — onglet 03 (60 US), 04 (cycles de vie), 05 (modèle de données), 06 (décisions), 07 (NFR), 09 (SDLC IA).
-- Une US = un identifiant `US-xxx`. Pas de code sans US ; pas de règle métier inventée.
+- **Jira** projet `KAN` (serveur MCP `atlassian`, voir `.mcp.json`) : les 60 stories avec leurs critères
+  d'acceptation **en vigueur** et leur statut. Correspondance `US-xxx` ↔ `KAN-yy` : `docs/backlog/jira-mapping.md`.
+- Backlog Excel : `docs/backlog/KOADOOO_Backlog_MVP_v1.2.xlsx` — référence pour les décisions (onglet 06),
+  le modèle de données (05), les cycles de vie (04), les NFR (07) et le SDLC IA (09).
+- Une US = un identifiant `US-xxx` (libellé Jira) = une clé `KAN-yy`. Pas de code sans US ; pas de règle métier inventée.
+- En cas d'écart entre Jira et l'Excel sur les critères d'acceptation, **Jira fait foi** : le signaler au PO.
 
 ## Le dépôt
 
@@ -63,12 +66,18 @@ Lire `frontend/AGENTS.md` : cette version de Next.js diffère de ce que les mod�
 
 ## Flux de travail par US (onglet 09 du backlog)
 
-1. Lire l'US (description, RG, AC, décisions liées) — si une décision est ouverte, s'arrêter et demander.
-2. Proposer un plan (fichiers, migrations, endpoints, tests) et le faire valider.
+1. Lire la story dans Jira via le MCP (`KAN-yy`, ou recherche par libellé `US-xxx`) : description, RG, AC,
+   dépendances, décisions liées. Si une décision est ouverte ou si une dépendance n'est pas livrée, s'arrêter et demander.
+2. Proposer un plan (fichiers, migrations, endpoints, tests) et le faire valider ; une fois validé, le poster en
+   commentaire sur la story et, si le développeur le demande, passer la story « In Progress ».
 3. Écrire les tests des critères d'acceptation **avant** le code.
 4. Implémenter jusqu'au vert, sans désactiver ni affaiblir un test ou une règle.
 5. Lancer les commandes de vérification ci-dessus.
-6. Branche `feat/US-xxx-description`, commits `US-xxx: …`, PR avec le modèle (assistance IA déclarée).
+6. Branche `feat/US-xxx-description`, commits `US-xxx: …`, PR `US-xxx (KAN-yy) — titre` avec le modèle
+   (assistance IA déclarée) ; commenter la story avec le lien de la PR.
+
+Dans Jira, l'agent ne passe jamais une story à « Done », ne crée ni ne supprime de story et ne modifie jamais
+ses critères d'acceptation (`docs/ai/politique-usage-ia.md`, §7).
 
 ## Interdits
 
