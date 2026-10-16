@@ -23,7 +23,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring-modulith.version>2.0.2</spring-modulith.version>
     <springdoc.version>3.0.2</springdoc.version>
-    <archunit.version>1.4.1</archunit.version>
+    <archunit.version>1.5.1</archunit.version>
     <testcontainers.version>2.0.5</testcontainers.version>
     <jacoco.version>0.8.13</jacoco.version>
     <spotless.version>2.44.5</spotless.version>
