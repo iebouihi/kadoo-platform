@@ -1,0 +1,4 @@
+# Profil local : docker compose up -d, puis mvn spring-boot:run -Dspring-boot.run.profiles=local
+springdoc:
+  swagger-ui:
+    enabled: true

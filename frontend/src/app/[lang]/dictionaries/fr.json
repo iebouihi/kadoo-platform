@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "title": "KOADOOO — Cartes cadeaux digitales",
+    "description": "Offrez une carte cadeau digitale de vos enseignes préférées au Maroc."
+  },
+  "home": {
+    "headline": "Offrez un moment, pas un objet.",
+    "subline": "Cartes cadeaux 100 % digitales, envoyées par email ou WhatsApp, utilisables chez nos partenaires partout au Maroc.",
+    "cta": "Découvrir les offres",
+    "sampleAmountLabel": "Exemple de montant",
+    "sampleExpiryLabel": "Exemple d'expiration"
+  },
+  "language": {
+    "label": "Langue",
+    "fr": "Français",
+    "ar": "العربية",
+    "en": "English"
+  }
+}

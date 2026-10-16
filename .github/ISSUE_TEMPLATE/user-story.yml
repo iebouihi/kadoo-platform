@@ -1,0 +1,42 @@
+name: User story
+description: Une US du backlog KOADOOO (miroir de Jira)
+title: "US-xxx — "
+labels: ["user-story"]
+body:
+  - type: input
+    id: jira
+    attributes:
+      label: Lien Jira
+    validations:
+      required: true
+  - type: textarea
+    id: story
+    attributes:
+      label: Description
+      description: En tant que… je veux… afin de…
+    validations:
+      required: true
+  - type: textarea
+    id: rules
+    attributes:
+      label: Règles de gestion (RG)
+  - type: textarea
+    id: ac
+    attributes:
+      label: Critères d'acceptation (Étant donné / quand / alors)
+    validations:
+      required: true
+  - type: input
+    id: decisions
+    attributes:
+      label: Décisions liées (onglet 06)
+      placeholder: D-01, D-06
+  - type: checkboxes
+    id: ready
+    attributes:
+      label: Definition of Ready
+      options:
+        - label: AC validés par le PO
+        - label: Décisions liées tranchées ou hypothèse acceptée
+        - label: Maquette fr + ar disponible (si écran)
+        - label: Dépendances livrées ou bouchonnées

@@ -1,0 +1,7 @@
+{
+  "request": { "method": "GET", "url": "/psp/health" },
+  "response": {
+    "status": 200,
+    "jsonBody": { "status": "UP", "note": "Simulateur PSP — les scénarios de paiement seront ajoutés avec US-018 (D-06)" }
+  }
+}

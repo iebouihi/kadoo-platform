@@ -1,0 +1,48 @@
+name: frontend
+
+on:
+  pull_request:
+    paths: ["frontend/**", "contracts/**", ".github/workflows/frontend.yml"]
+  push:
+    branches: [main]
+    paths: ["frontend/**", "contracts/**", ".github/workflows/frontend.yml"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frontend-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - name: Contrat d'API à jour (NFR-041)
+        run: npm run check:api
+      - run: npm run lint
+      - run: npm run typecheck
+      - name: Tests unitaires (dont catalogues i18n, NFR-080)
+        run: npm test
+      - run: npm run build
+      - name: Navigateurs Playwright
+        run: npx playwright install --with-deps chromium
+      - name: Tests E2E (RTL, accessibilité, en-têtes — NFR-001, NFR-070, NFR-081)
+        run: npm run test:e2e
+      - name: Rapport Playwright
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: frontend/playwright-report

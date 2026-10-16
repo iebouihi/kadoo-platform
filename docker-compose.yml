@@ -1,0 +1,31 @@
+# Environnement local (NFR-051) : aucune dépendance à un service réel.
+#   docker compose up -d
+#   PostgreSQL : localhost:5432 (koadooo / koadooo)
+#   Mailpit    : http://localhost:8025 (emails reçus), SMTP localhost:1025
+#   WireMock   : http://localhost:8089 (simulateur PSP, mappings dans infra/wiremock)
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: koadooo
+      POSTGRES_USER: koadooo
+      POSTGRES_PASSWORD: koadooo
+      TZ: UTC
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U koadooo"]
+      interval: 5s
+      retries: 10
+
+  mailpit:
+    image: axllent/mailpit:latest
+    ports: ["8025:8025", "1025:1025"]
+
+  wiremock:
+    image: wiremock/wiremock:latest
+    ports: ["8089:8080"]
+    volumes: ["./infra/wiremock:/home/wiremock"]
+
+volumes:
+  pgdata:

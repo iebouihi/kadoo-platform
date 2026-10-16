@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  title: KOADOOO API
+  version: 0.1.0
+  description: |
+    Contrat unique entre le frontend Next.js et le backend Spring Boot (ADR-0003, NFR-041).
+    Ce fichier est la source de vérité : le backend l'implémente, le frontend génère ses types à partir de lui.
+    Toute rupture de contrat exige une nouvelle version (/api/v2).
+servers:
+  - url: /api/v1
+paths:
+  /public/languages:
+    get:
+      operationId: listActiveLanguages
+      summary: Langues actives de la plateforme (US-039)
+      tags: [i18n]
+      responses:
+        "200":
+          description: Langues actives, la langue par défaut en premier.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Language"
+components:
+  schemas:
+    Language:
+      type: object
+      required: [code, nativeName, direction, isDefault]
+      properties:
+        code:
+          type: string
+          description: Locale BCP 47.
+          examples: [fr-MA]
+        nativeName:
+          type: string
+          examples: [Français]
+        direction:
+          type: string
+          enum: [LTR, RTL]
+        isDefault:
+          type: boolean
+    Money:
+      type: object
+      description: Montant exact. La valeur est une chaîne décimale à 2 décimales, jamais un nombre flottant (NFR-014).
+      required: [amount, currency]
+      properties:
+        amount:
+          type: string
+          pattern: "^-?\\d+\\.\\d{2}$"
+          examples: ["1250.00"]
+        currency:
+          type: string
+          enum: [MAD]
+    Problem:
+      type: object
+      description: Erreur au format RFC 9457. `code` est stable et traduit côté frontend (NFR-041).
+      required: [type, title, status, code]
+      properties:
+        type: { type: string }
+        title: { type: string }
+        status: { type: integer }
+        detail: { type: string }
+        code:
+          type: string
+          examples: [CARD_ALREADY_REDEEMED]
+        correlationId: { type: string }
