@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "title": "Kadoo — Digital gift cards",
+    "description": "Give a digital gift card from your favourite brands in Morocco."
+  },
+  "home": {
+    "headline": "Give a moment, not a thing.",
+    "subline": "100% digital gift cards, sent by email or WhatsApp, redeemable at our partners across Morocco.",
+    "cta": "Browse offers",
+    "sampleAmountLabel": "Sample amount",
+    "sampleExpiryLabel": "Sample expiry"
+  },
+  "language": {
+    "label": "Language",
+    "fr": "Français",
+    "ar": "العربية",
+    "en": "English"
+  }
+}

@@ -1,0 +1,20 @@
+# Revue obligatoire (activer « Require review from Code Owners » sur la branche main).
+# Remplacer @iebouihi par les équipes GitHub (ex. @org/backend-seniors) quand elles existent.
+
+*                                   @iebouihi
+
+# Zones sensibles : double revue (senior + second relecteur), voir CLAUDE.md
+/backend/src/main/java/ma/kadoo/payment/      @iebouihi
+/backend/src/main/java/ma/kadoo/issuance/     @iebouihi
+/backend/src/main/java/ma/kadoo/redemption/   @iebouihi
+/backend/src/main/java/ma/kadoo/identity/     @iebouihi
+/backend/src/main/java/ma/kadoo/shared/money/ @iebouihi
+/backend/src/main/java/ma/kadoo/platform/     @iebouihi
+/backend/src/main/resources/db/migration/       @iebouihi
+/contracts/                                     @iebouihi
+
+# Fichiers de contexte et commandes IA : revus comme du code
+/CLAUDE.md                                      @iebouihi
+/**/CLAUDE.md                                   @iebouihi
+/.claude/                                       @iebouihi
+/.github/                                       @iebouihi

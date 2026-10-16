@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: system-ui, "Segoe UI", "Noto Sans Arabic", "Noto Sans", Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  /* Police latin + arabe auto-hébergée à brancher via next/font/local (NFR-082). */
+  font-family: system-ui, "Segoe UI", "Noto Sans Arabic", "Noto Sans", Arial, sans-serif;
+}
