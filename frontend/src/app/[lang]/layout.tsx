@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { bcp47, direction, locales } from "@/i18n/config";
+import { fontVariables } from "@/fonts";
 import { currentLocale, getDictionary } from "./dictionaries";
 import "./globals.css";
 
@@ -21,8 +22,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
   const locale = await currentLocale();
   return (
-    <html lang={bcp47[locale]} dir={direction[locale]} className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang={bcp47[locale]} dir={direction[locale]} className={`${fontVariables} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-surface text-ink">{children}</body>
     </html>
   );
 }

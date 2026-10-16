@@ -1,26 +1,183 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * Design System Kadoo — tokens (source : docs/design/tokens.json, vérifié par src/design/tokens.test.ts).
+ * Règle : aucune couleur en dur dans les composants ; utiliser les classes générées
+ * (bg-surface, text-ink, text-majorelle, border-line-strong, rounded-md, shadow-card…).
+ */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: system-ui, "Segoe UI", "Noto Sans Arabic", "Noto Sans", Arial, sans-serif;
+:root {
+  /* Couleurs — thème clair */
+  --surface: #f6f7fb;
+  --surface-raised: #ffffff;
+  --surface-sunken: #eceef6;
+  --line: #d9dcea;
+  --line-strong: #7d84a6;
+  --ink: #12152e;
+  --ink-muted: #4e5475;
+  --majorelle: #2340d3;
+  --on-majorelle: #ffffff;
+  --majorelle-soft: #e5e9fd;
+  --safran: #f2b200;
+  --on-safran: #12152e;
+  --safran-soft: #fff4d1;
+  --safran-ink: #7a5300;
+  --menthe: #0f7a55;
+  --menthe-soft: #ddf5ec;
+  --grenade: #b42318;
+  --grenade-soft: #fde7e5;
+
+  /* Ombres et focus */
+  --shadow-card-value: 0 1px 2px #12152e14, 0 2px 8px #12152e0f;
+  --shadow-gift-value: 0 12px 32px -8px #2340d340, 0 2px 6px #12152e1a;
+  --focus-gap: #ffffff;
+
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    --surface: #0e1124;
+    --surface-raised: #171b33;
+    --surface-sunken: #0a0c1b;
+    --line: #2a2f4d;
+    --line-strong: #6b7299;
+    --ink: #eef0fa;
+    --ink-muted: #a9aecb;
+    --majorelle: #8fa2ff;
+    --on-majorelle: #0e1124;
+    --majorelle-soft: #1c2453;
+    --safran: #f7c63d;
+    --on-safran: #12152e;
+    --safran-soft: #33290a;
+    --safran-ink: #f7c63d;
+    --menthe: #4fd1a0;
+    --menthe-soft: #0d2e23;
+    --grenade: #ff8a80;
+    --grenade-soft: #3a1311;
+    --shadow-card-value: 0 1px 2px #00000080;
+    --shadow-gift-value: 0 12px 32px -8px #000000cc;
+    --focus-gap: #0e1124;
+    color-scheme: dark;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  /* Police latin + arabe auto-hébergée à brancher via next/font/local (NFR-082). */
-  font-family: system-ui, "Segoe UI", "Noto Sans Arabic", "Noto Sans", Arial, sans-serif;
+:root[data-theme="dark"] {
+  --surface: #0e1124;
+  --surface-raised: #171b33;
+  --surface-sunken: #0a0c1b;
+  --line: #2a2f4d;
+  --line-strong: #6b7299;
+  --ink: #eef0fa;
+  --ink-muted: #a9aecb;
+  --majorelle: #8fa2ff;
+  --on-majorelle: #0e1124;
+  --majorelle-soft: #1c2453;
+  --safran: #f7c63d;
+  --on-safran: #12152e;
+  --safran-soft: #33290a;
+  --safran-ink: #f7c63d;
+  --menthe: #4fd1a0;
+  --menthe-soft: #0d2e23;
+  --grenade: #ff8a80;
+  --grenade-soft: #3a1311;
+  --shadow-card-value: 0 1px 2px #00000080;
+  --shadow-gift-value: 0 12px 32px -8px #000000cc;
+  --focus-gap: #0e1124;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-majorelle: var(--majorelle);
+  --color-on-majorelle: var(--on-majorelle);
+  --color-majorelle-soft: var(--majorelle-soft);
+  --color-safran: var(--safran);
+  --color-on-safran: var(--on-safran);
+  --color-safran-soft: var(--safran-soft);
+  --color-safran-ink: var(--safran-ink);
+  --color-menthe: var(--menthe);
+  --color-menthe-soft: var(--menthe-soft);
+  --color-grenade: var(--grenade);
+  --color-grenade-soft: var(--grenade-soft);
+
+  /* Polices : latin puis arabe (voir src/fonts/index.ts), puis repli système */
+  --font-sans:
+    var(--font-readex-latin), var(--font-readex-arabic), "Noto Sans Arabic", system-ui, "Segoe UI", sans-serif;
+  --font-display:
+    var(--font-reem-latin), var(--font-reem-arabic), var(--font-readex-latin), var(--font-readex-arabic), system-ui,
+    sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, Menlo, monospace;
+
+  --shadow-card: var(--shadow-card-value);
+  --shadow-gift: var(--shadow-gift-value);
+}
+
+@theme {
+  /* Échelle typographique du DS (text-display-xl, text-heading…) */
+  --text-display-xl: 40px;
+  --text-display-xl--line-height: 48px;
+  --text-display: 30px;
+  --text-display--line-height: 38px;
+  --text-heading: 22px;
+  --text-heading--line-height: 30px;
+  --text-subheading: 18px;
+  --text-subheading--line-height: 26px;
+  --text-body: 16px;
+  --text-body--line-height: 24px;
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 20px;
+  --text-caption: 12px;
+  --text-caption--line-height: 16px;
+  --text-amount: 28px;
+  --text-amount--line-height: 34px;
+  --text-code: 20px;
+  --text-code--line-height: 28px;
+
+  /* Rayons */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  /* Tailles : cibles tactiles ≥ 44 px (NFR-071), largeurs de lecture */
+  --spacing-control: 48px;
+  --spacing-control-sm: 44px;
+  --container-reading: 640px;
+  --container-content: 1120px;
+}
+
+@layer base {
+  body {
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* Focus clavier visible sur toutes les surfaces (≥ 3:1) */
+  :focus-visible {
+    outline: 2px solid var(--majorelle);
+    outline-offset: 2px;
+  }
+
+  /* L'arabe ne s'espace pas et n'a pas de capitales : on neutralise tracking et uppercase hors zones LTR */
+  [dir="rtl"] :where(:not([dir="ltr"], [dir="ltr"] *)) {
+    letter-spacing: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }

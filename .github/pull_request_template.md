@@ -23,6 +23,7 @@ US-xxx — <!-- titre -->  · Jira : <!-- lien -->
 - [ ] Contrat `contracts/openapi.yaml` mis à jour avant l'implémentation (si l'API change)
 - [ ] Migration Flyway nouvelle (aucune migration existante modifiée)
 - [ ] Textes ajoutés en fr, ar et en ; écran vérifié en `/ar`
+- [ ] Écran conforme à sa maquette, tokens et composants `ui` uniquement ; captures mobile fr + ar jointes
 - [ ] Aucune donnée réelle, aucun secret, aucun code d'utilisation dans les logs / l'audit
 - [ ] Événements d'audit émis pour les actions métier
 - [ ] Zone sensible touchée (paiement, émission, utilisation, commission, sécurité) → double revue demandée
