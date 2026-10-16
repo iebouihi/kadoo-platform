@@ -8,7 +8,7 @@ export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "fr";
 
 /** Cookie posé quand l'utilisateur choisit explicitement une langue (prioritaire, US-040). */
-export const LOCALE_COOKIE = "KOADOOO_LOCALE";
+export const LOCALE_COOKIE = "KADOO_LOCALE";
 
 export const bcp47: Record<Locale, string> = {
   fr: "fr-MA",

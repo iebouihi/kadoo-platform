@@ -1,4 +1,4 @@
-# Politique d'usage de l'IA — projet KOADOOO
+# Politique d'usage de l'IA — projet Kadoo
 
 À lire et accepter par chaque membre de l'équipe avant sa première PR. Référence : onglet 09 du backlog, ADR-0006.
 
@@ -13,7 +13,7 @@ contrat exclut la réutilisation des données pour l'entraînement. Liste tenue 
 
 | Outil | Usage | Compte |
 |---|---|---|
-| Claude Code (extension VS Code, plugin JetBrains, CLI) | Agent de code : plan, tests, implémentation, revue | Siège de l'organisation KOADOOO (Claude for Teams ou Enterprise) |
+| Claude Code (extension VS Code, plugin JetBrains, CLI) | Agent de code : plan, tests, implémentation, revue | Siège de l'organisation Kadoo (Claude for Teams ou Enterprise) |
 | Claude (web / desktop) | Analyse, rédaction, revue de spécifications | Même siège |
 | Connecteur MCP Atlassian | Lecture et mise à jour des stories Jira `KAN` | Compte Atlassian nominatif de chaque membre |
 
@@ -46,7 +46,7 @@ revue par un senior et un second relecteur, tests de concurrence et de sécurit�
 
 ## 7. Jira comme source d'exécution (MCP Atlassian)
 
-Le backlog est chargé dans Jira, projet **Kadooo** (`KAN`) : 13 epics (`KAN-4` à `KAN-16`) et 60 stories (`KAN-17` à
+Le backlog est chargé dans Jira, projet **Kadoo** (`KAN`) : 13 epics (`KAN-4` à `KAN-16`) et 60 stories (`KAN-17` à
 `KAN-76`), avec description, règles de gestion, critères d'acceptation, dépendances et décisions liées.
 Correspondance complète `US-xxx` ↔ `KAN-yy` : `docs/backlog/jira-mapping.md`.
 
@@ -55,7 +55,7 @@ Correspondance complète `US-xxx` ↔ `KAN-yy` : `docs/backlog/jira-mapping.md`.
 | Source | Fait foi pour |
 |---|---|
 | Jira `KAN` | Statut, priorité, sprint, assignation, critères d'acceptation **en vigueur** (le PO les modifie dans Jira) |
-| `docs/backlog/KOADOOO_Backlog_MVP_v1.2.xlsx` | Décisions (onglet 06), modèle de données (05), cycles de vie (04), NFR (07) |
+| `docs/backlog/Kadoo_Backlog_MVP_v1.2.xlsx` | Décisions (onglet 06), modèle de données (05), cycles de vie (04), NFR (07) |
 | Dépôt Git | Code, tests, contrat d'API, ADR |
 
 **Ce que l'agent fait via le MCP Atlassian**

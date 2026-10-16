@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: KOADOOO API
+  title: Kadoo API
   version: 0.1.0
   description: |
     Contrat unique entre le frontend Next.js et le backend Spring Boot (ADR-0003, NFR-041).

@@ -1,5 +1,5 @@
 ---
-description: Implémenter une user story du backlog KOADOOO (Jira KAN) selon le flux tests d'abord
+description: Implémenter une user story du backlog Kadoo (Jira KAN) selon le flux tests d'abord
 argument-hint: US-xxx ou KAN-yy
 ---
 

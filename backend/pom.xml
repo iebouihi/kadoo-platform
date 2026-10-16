@@ -12,10 +12,10 @@
     <relativePath/>
   </parent>
 
-  <groupId>ma.koadooo</groupId>
-  <artifactId>koadooo-backend</artifactId>
+  <groupId>ma.kadoo</groupId>
+  <artifactId>kadoo-backend</artifactId>
   <version>0.1.0-SNAPSHOT</version>
-  <name>KOADOOO backend</name>
+  <name>Kadoo backend</name>
   <description>Monolithe modulaire Spring Boot (ADR-0001)</description>
 
   <properties>
@@ -215,11 +215,11 @@
                 <rule>
                   <element>PACKAGE</element>
                   <includes>
-                    <include>ma.koadooo.shared.money*</include>
-                    <include>ma.koadooo.order*</include>
-                    <include>ma.koadooo.payment*</include>
-                    <include>ma.koadooo.issuance*</include>
-                    <include>ma.koadooo.redemption*</include>
+                    <include>ma.kadoo.shared.money*</include>
+                    <include>ma.kadoo.order*</include>
+                    <include>ma.kadoo.payment*</include>
+                    <include>ma.kadoo.issuance*</include>
+                    <include>ma.kadoo.redemption*</include>
                   </includes>
                   <limits>
                     <limit>

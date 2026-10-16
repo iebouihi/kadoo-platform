@@ -4,10 +4,10 @@ WORKDIR /src
 COPY pom.xml .
 RUN mvn -B -ntp dependency:go-offline
 COPY src ./src
-RUN mvn -B -ntp package -DskipTests && java -Djarmode=tools -jar target/koadooo-backend-*.jar extract --layers --launcher --destination target/extracted
+RUN mvn -B -ntp package -DskipTests && java -Djarmode=tools -jar target/kadoo-backend-*.jar extract --layers --launcher --destination target/extracted
 
 FROM eclipse-temurin:21-jre
-RUN useradd --system --uid 10001 koadooo
+RUN useradd --system --uid 10001 kadoo
 WORKDIR /app
 COPY --from=build /src/target/extracted/dependencies/ ./
 COPY --from=build /src/target/extracted/spring-boot-loader/ ./

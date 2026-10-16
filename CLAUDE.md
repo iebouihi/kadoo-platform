@@ -1,4 +1,4 @@
-# KOADOOO — contexte pour les agents IA (et les humains)
+# Kadoo — contexte pour les agents IA (et les humains)
 
 Ce fichier est lu par les assistants de code au début de chaque session. Il résume ce qu'il faut savoir pour
 contribuer sans casser les règles du projet. Les détails sont dans `docs/`.
@@ -7,11 +7,11 @@ contribuer sans casser les règles du projet. Les détails sont dans `docs/`.
 
 Plateforme marocaine B2B2C de cartes cadeaux 100 % digitales. Un partenaire publie une offre, un acheteur
 (sans compte) paie et offre une carte, le bénéficiaire la reçoit par email ou WhatsApp et l'utilise chez le
-partenaire. KOADOOO prélève une commission de 3 à 10 %. Devise MAD, langues fr-MA (défaut), ar-MA (RTL), en.
+partenaire. Kadoo prélève une commission de 3 à 10 %. Devise MAD, langues fr-MA (défaut), ar-MA (RTL), en.
 
 - **Jira** projet `KAN` (serveur MCP `atlassian`, voir `.mcp.json`) : les 60 stories avec leurs critères
   d'acceptation **en vigueur** et leur statut. Correspondance `US-xxx` ↔ `KAN-yy` : `docs/backlog/jira-mapping.md`.
-- Backlog Excel : `docs/backlog/KOADOOO_Backlog_MVP_v1.2.xlsx` — référence pour les décisions (onglet 06),
+- Backlog Excel : `docs/backlog/Kadoo_Backlog_MVP_v1.2.xlsx` — référence pour les décisions (onglet 06),
   le modèle de données (05), les cycles de vie (04), les NFR (07) et le SDLC IA (09).
 - Une US = un identifiant `US-xxx` (libellé Jira) = une clé `KAN-yy`. Pas de code sans US ; pas de règle métier inventée.
 - En cas d'écart entre Jira et l'Excel sur les critères d'acceptation, **Jira fait foi** : le signaler au PO.
@@ -51,7 +51,7 @@ partenaire. KOADOOO prélève une commission de 3 à 10 %. Devise MAD, langues f
 
 ## Architecture backend
 
-Un package par module sous `ma.koadooo` : `identity`, `partner`, `catalog`, `order`, `payment`, `issuance`,
+Un package par module sous `ma.kadoo` : `identity`, `partner`, `catalog`, `order`, `payment`, `issuance`,
 `redemption`, `notification`, `reporting`, `audit`, `i18n` (+ `shared` ouvert, `platform` technique).
 Les classes du package racine d'un module sont son API ; le reste va dans `<module>.internal`.
 `ModularityTests` (Spring Modulith) et `ArchitectureRulesTest` (ArchUnit) échouent sinon.

@@ -22,7 +22,7 @@ test.describe("Langues et RTL (US-040, US-046)", () => {
   });
 
   test("le choix explicite de langue est prioritaire", async ({ page, context }) => {
-    await context.addCookies([{ name: "KOADOOO_LOCALE", value: "en", url: page.url() || "http://localhost:3000" }]);
+    await context.addCookies([{ name: "KADOO_LOCALE", value: "en", url: page.url() || "http://localhost:3000" }]);
     await page.goto("/");
     await expect(page).toHaveURL(/\/en$/);
   });

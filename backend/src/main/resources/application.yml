@@ -1,13 +1,13 @@
 spring:
   application:
-    name: koadooo-backend
+    name: kadoo-backend
   threads:
     virtual:
       enabled: true
   datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/koadooo}
-    username: ${DATABASE_USERNAME:koadooo}
-    password: ${DATABASE_PASSWORD:koadooo}
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/kadoo}
+    username: ${DATABASE_USERNAME:kadoo}
+    password: ${DATABASE_PASSWORD:kadoo}
   jpa:
     open-in-view: false
     hibernate:

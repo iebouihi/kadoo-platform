@@ -1,6 +1,6 @@
 # Correspondance backlog ↔ Jira
 
-Projet Jira **Kadooo** (clé `KAN`). Chargé le 16/10/2026 depuis `KOADOOO_Backlog_MVP_v1.2.xlsx` (onglet 03).
+Projet Jira **Kadoo** (clé `KAN`). Chargé le 16/10/2026 depuis `Kadoo_Backlog_MVP_v1.2.xlsx` (onglet 03).
 Jira est la référence pour le **statut** et l'avancement ; le fichier Excel reste la référence pour les décisions, le modèle de données et les NFR.
 
 Conventions : libellés `US-xxx`, `lot-n`, `P0`/`P1`/`P2`, `EPxx`, `D-xx` (décision liée), `nouveau-v1.1`. Priorité Jira : P0 → Highest, P1 → High, P2 → Medium.

@@ -4,12 +4,12 @@
 *                                   @iebouihi
 
 # Zones sensibles : double revue (senior + second relecteur), voir CLAUDE.md
-/backend/src/main/java/ma/koadooo/payment/      @iebouihi
-/backend/src/main/java/ma/koadooo/issuance/     @iebouihi
-/backend/src/main/java/ma/koadooo/redemption/   @iebouihi
-/backend/src/main/java/ma/koadooo/identity/     @iebouihi
-/backend/src/main/java/ma/koadooo/shared/money/ @iebouihi
-/backend/src/main/java/ma/koadooo/platform/     @iebouihi
+/backend/src/main/java/ma/kadoo/payment/      @iebouihi
+/backend/src/main/java/ma/kadoo/issuance/     @iebouihi
+/backend/src/main/java/ma/kadoo/redemption/   @iebouihi
+/backend/src/main/java/ma/kadoo/identity/     @iebouihi
+/backend/src/main/java/ma/kadoo/shared/money/ @iebouihi
+/backend/src/main/java/ma/kadoo/platform/     @iebouihi
 /backend/src/main/resources/db/migration/       @iebouihi
 /contracts/                                     @iebouihi
 

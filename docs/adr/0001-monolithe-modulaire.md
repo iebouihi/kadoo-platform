@@ -11,7 +11,7 @@ atomique et idempotent (NFR-010, NFR-012). Le MVP doit être simple à exploiter
 ## Décision
 
 Un seul déployable Java 21 / Spring Boot 4, découpé en modules métier (`identity`, `partner`, `catalog`, `order`,
-`payment`, `issuance`, `redemption`, `notification`, `reporting`, `audit`, `i18n`) sous `ma.koadooo`.
+`payment`, `issuance`, `redemption`, `notification`, `reporting`, `audit`, `i18n`) sous `ma.kadoo`.
 Les frontières sont vérifiées à chaque build par Spring Modulith (`ModularityTests`) et ArchUnit. Une seule base
 PostgreSQL ; chaque module possède ses tables.
 

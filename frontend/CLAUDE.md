@@ -1,6 +1,6 @@
 @AGENTS.md
 
-# Frontend KOADOOO
+# Frontend Kadoo
 
 Règles générales : voir `../CLAUDE.md`. Spécifique au frontend :
 

@@ -1,4 +1,4 @@
-# KOADOOO — plateforme de cartes cadeaux digitales
+# Kadoo — plateforme de cartes cadeaux digitales
 
 Marketplace marocaine B2B2C : les partenaires publient des cartes cadeaux, les acheteurs les paient et les offrent
 par email ou WhatsApp, les bénéficiaires les utilisent chez le partenaire. MAD · français, arabe (RTL), anglais.
@@ -36,11 +36,11 @@ cd frontend && npm run lint && npm run typecheck && npm test && npm run build &&
 ## Organisation
 
 ```
-backend/      Java 21 · Spring Boot 4 · monolithe modulaire (ma.koadooo.<module>)
+backend/      Java 21 · Spring Boot 4 · monolithe modulaire (ma.kadoo.<module>)
 frontend/     Next.js 16 · TypeScript strict · App Router · routes /[lang]
 contracts/    openapi.yaml — contrat d'API unique (source de vérité)
 docs/
-  backlog/    KOADOOO_Backlog_MVP_v1.2.xlsx + jira-mapping.md (US ↔ KAN)
+  backlog/    Kadoo_Backlog_MVP_v1.2.xlsx + jira-mapping.md (US ↔ KAN)
   adr/        décisions d'architecture
   ai/         politique d'usage de l'IA (dont règles Jira / MCP)
   dev/        environnement de développement : outils, IDE, licences Claude

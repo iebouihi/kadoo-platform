@@ -1,6 +1,6 @@
 # Guide de l'environnement de développement
 
-Ce guide décrit le poste de travail standard de l'équipe KOADOOO : outils, IDE, assistant IA et licences.
+Ce guide décrit le poste de travail standard de l'équipe Kadoo : outils, IDE, assistant IA et licences.
 Objectif : un nouveau développeur est opérationnel en une demi-journée, avec les mêmes garde-fous que le reste de l'équipe.
 
 ## 1. Outils de base
@@ -92,14 +92,14 @@ Claude Code fonctionne avec n'importe quel abonnement Claude payant (**Pro, Max,
 
 | Option | Pour qui | Avantages | Points d'attention |
 |---|---|---|---|
-| **Claude for Teams** *(recommandé)* | Équipe KOADOOO | Facturation centralisée, administration des membres, SSO, réglages Claude Code gérés par l'organisation, accès à Claude Code **et** à Claude web | Vérifier sur la page tarifs que le type de siège choisi inclut Claude Code |
+| **Claude for Teams** *(recommandé)* | Équipe Kadoo | Facturation centralisée, administration des membres, SSO, réglages Claude Code gérés par l'organisation, accès à Claude Code **et** à Claude web | Vérifier sur la page tarifs que le type de siège choisi inclut Claude Code |
 | Claude for Enterprise | Si exigences de conformité fortes | Ajoute capture de domaine, rôles, API de conformité | Contrat commercial |
 | Claude Console (API) | Usage ponctuel, CI | Paiement à la consommation, rôle « Claude Code » dédié | Coût variable, à plafonner |
 | Pro / Max individuels | **À éviter** pour le projet | — | Comptes personnels : pas de contrôle de l'organisation sur les données ni sur la facturation |
 
 Règles du projet (voir `docs/ai/politique-usage-ia.md`) :
 
-1. Chaque développeur utilise un **siège de l'organisation KOADOOO**, jamais un compte personnel, pour le code du projet.
+1. Chaque développeur utilise un **siège de l'organisation Kadoo**, jamais un compte personnel, pour le code du projet.
 2. L'administrateur restreint la connexion à l'organisation via les **réglages gérés** (`forceLoginMethod`, `forceLoginOrgUUID`),
    déployés sur les postes.
 3. Le CI utilise un jeton dédié stocké dans les secrets GitHub (jamais dans le dépôt).
