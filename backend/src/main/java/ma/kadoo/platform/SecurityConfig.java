@@ -3,6 +3,7 @@ package ma.kadoo.platform;
 import jakarta.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -39,6 +40,22 @@ class SecurityConfig {
                 new RequestAttributeSecurityContextRepository(), new HttpSessionSecurityContextRepository());
     }
 
+    /**
+     * Swagger UI : n'existe qu'en profil local (springdoc.swagger-ui.enabled), 404 ailleurs. Sa page charge ses
+     * propres scripts et styles, que la CSP des API (default-src 'none') bloquerait.
+     */
+    @Bean
+    @Order(1)
+    SecurityFilterChain swaggerUiSecurity(HttpSecurity http) throws Exception {
+        http.securityMatcher("/swagger-ui.html", "/swagger-ui/**")
+                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+                .requestCache(AbstractHttpConfigurer::disable)
+                .headers(headers -> headers.contentSecurityPolicy(csp -> csp.policyDirectives(
+                        "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+                                + " connect-src 'self'; frame-ancestors 'none'")));
+        return http.build();
+    }
+
     @Bean
     SecurityFilterChain apiSecurity(HttpSecurity http, SecurityContextRepository securityContextRepository)
             throws Exception {
@@ -53,10 +70,7 @@ class SecurityConfig {
                                 "/api/v1/auth/csrf",
                                 "/actuator/health/**",
                                 "/actuator/info",
-                                "/v3/api-docs/**",
-                                // Swagger UI n'existe qu'en profil local (springdoc.swagger-ui.enabled), 404 ailleurs.
-                                "/swagger-ui.html",
-                                "/swagger-ui/**")
+                                "/v3/api-docs/**")
                         .permitAll()
                         .requestMatchers("/api/v1/admin/**")
                         .hasRole("ADMIN")

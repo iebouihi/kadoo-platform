@@ -39,8 +39,29 @@ class SwaggerUiIT {
     }
 
     @Test
+    void la_csp_de_swagger_ui_autorise_ses_propres_scripts_et_styles() throws Exception {
+        String csp = get("/swagger-ui/index.html")
+                .headers()
+                .firstValue("Content-Security-Policy")
+                .orElseThrow();
+
+        assertThat(csp)
+                .contains("script-src 'self'")
+                .contains("style-src 'self'")
+                .contains("connect-src 'self'")
+                .contains("frame-ancestors 'none'")
+                .doesNotContain("unsafe-eval");
+    }
+
+    @Test
     void les_api_protegees_exigent_toujours_une_session() throws Exception {
         assertThat(get("/api/v1/auth/me").statusCode()).isEqualTo(401);
+    }
+
+    @Test
+    void les_api_gardent_la_csp_la_plus_stricte() throws Exception {
+        assertThat(get("/api/v1/auth/me").headers().firstValue("Content-Security-Policy"))
+                .hasValue("default-src 'none'; frame-ancestors 'none'");
     }
 
     private HttpResponse<String> get(String path) throws Exception {
