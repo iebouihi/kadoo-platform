@@ -1,5 +1,6 @@
 package ma.kadoo.audit.internal;
 
+import java.util.List;
 import java.util.UUID;
 import org.springframework.data.repository.Repository;
 
@@ -9,4 +10,7 @@ public interface AuditEventRepository extends Repository<AuditEvent, UUID> {
     AuditEvent save(AuditEvent event);
 
     long count();
+
+    /** Lecture seule : chronologie d'une entité, du plus ancien au plus récent. */
+    List<AuditEvent> findByEntityTypeAndEntityIdOrderByOccurredAtAscIdAsc(String entityType, String entityId);
 }
