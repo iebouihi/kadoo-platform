@@ -191,16 +191,39 @@
             <id>prepare-agent-it</id>
             <goals><goal>prepare-agent-integration</goal></goals>
           </execution>
+          <!-- Les tests d'intégration (*IT, base réelle) comptent autant que les tests unitaires (NFR-050) :
+               la couverture est mesurée sur la fusion des deux, les seuils ci-dessous restent inchangés. -->
+          <execution>
+            <id>merge</id>
+            <phase>post-integration-test</phase>
+            <goals><goal>merge</goal></goals>
+            <configuration>
+              <fileSets>
+                <fileSet>
+                  <directory>${project.build.directory}</directory>
+                  <includes>
+                    <include>jacoco.exec</include>
+                    <include>jacoco-it.exec</include>
+                  </includes>
+                </fileSet>
+              </fileSets>
+              <destFile>${project.build.directory}/jacoco-merged.exec</destFile>
+            </configuration>
+          </execution>
           <execution>
             <id>report</id>
             <phase>verify</phase>
             <goals><goal>report</goal></goals>
+            <configuration>
+              <dataFile>${project.build.directory}/jacoco-merged.exec</dataFile>
+            </configuration>
           </execution>
           <execution>
             <id>check</id>
             <phase>verify</phase>
             <goals><goal>check</goal></goals>
             <configuration>
+              <dataFile>${project.build.directory}/jacoco-merged.exec</dataFile>
               <rules>
                 <rule>
                   <element>BUNDLE</element>
