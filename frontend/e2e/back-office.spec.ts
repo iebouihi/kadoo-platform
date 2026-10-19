@@ -2,30 +2,10 @@ import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 /**
- * Connexion back-office (KAN-17), côté frontend seul : l'API est simulée. Le parcours complet avec le vrai backend
- * est couvert par les tests d'intégration du backend (LoginIT, SessionIT, CrossTenantIT).
+ * Back-office (KAN-17) sans session : redirections, RTL, CSP, accessibilité. Les parcours de connexion réussie et
+ * refusée, avec le vrai backend, sont dans login.spec.ts.
  */
 test.describe("Connexion back-office (KAN-17)", () => {
-  test("AC2 — identifiants refusés : message générique", async ({ page }) => {
-    await page.route("**/api/v1/auth/csrf", (route) =>
-      route.fulfill({ status: 204, headers: { "set-cookie": "XSRF-TOKEN=jeton-de-test; Path=/" } }),
-    );
-    await page.route("**/api/v1/auth/login", (route) =>
-      route.fulfill({
-        status: 401,
-        contentType: "application/problem+json",
-        body: JSON.stringify({ type: "about:blank", title: "Unauthorized", status: 401, code: "INVALID_CREDENTIALS" }),
-      }),
-    );
-    await page.goto("/fr/login");
-    await page.getByLabel("Adresse email").fill("inconnu@kadoo.test");
-    await page.getByLabel("Mot de passe").fill("pas-le-bon-mot-de-passe");
-    await page.getByRole("button", { name: "Se connecter" }).click();
-
-    await expect(page.getByRole("alert")).toHaveText("Email ou mot de passe incorrect.");
-    await expect(page).toHaveURL(/\/fr\/login$/);
-  });
-
   test("AC5 — sans session, le tableau de bord renvoie vers la connexion", async ({ page }) => {
     await page.goto("/ar/admin");
     await expect(page).toHaveURL(/\/ar\/login$/);

@@ -21,8 +21,8 @@ test.describe("Langues et RTL (KAN-67, KAN-73)", () => {
     await expect(page.locator("html")).toHaveAttribute("dir", "ltr");
   });
 
-  test("le choix explicite de langue est prioritaire", async ({ page, context }) => {
-    await context.addCookies([{ name: "KADOO_LOCALE", value: "en", url: page.url() || "http://localhost:3000" }]);
+  test("le choix explicite de langue est prioritaire", async ({ page, context, baseURL }) => {
+    await context.addCookies([{ name: "KADOO_LOCALE", value: "en", url: baseURL }]);
     await page.goto("/");
     await expect(page).toHaveURL(/\/en$/);
   });
