@@ -1,6 +1,9 @@
 spring:
   application:
     name: kadoo-backend
+  autoconfigure:
+    # KAN-17 : seuls les comptes app_user s'authentifient ; pas d'utilisateur par défaut au mot de passe journalisé.
+    exclude: org.springframework.boot.security.autoconfigure.UserDetailsServiceAutoConfiguration
   threads:
     virtual:
       enabled: true
@@ -21,11 +24,28 @@ spring:
   mvc:
     problemdetails:
       enabled: true # erreurs RFC 9457 (contracts/openapi.yaml#Problem)
+  session:
+    jdbc:
+      initialize-schema: never # tables créées par Flyway (V5), NFR-043
 
 server:
   shutdown: graceful
   error:
     include-stacktrace: never
+  servlet:
+    session:
+      timeout: 30m # KAN-17 RG5 : inactivité ; durée maximale 8 h dans identity (SessionMaxLifetimeFilter)
+      cookie:
+        http-only: true
+        secure: true
+        same-site: lax # NFR-002
+
+# Amorçage du premier Admin (KAN-17) : uniquement par variables d'environnement, jamais dans le dépôt.
+kadoo:
+  bootstrap:
+    admin:
+      email: ${KADOO_BOOTSTRAP_ADMIN_EMAIL:}
+      password: ${KADOO_BOOTSTRAP_ADMIN_PASSWORD:}
 
 management:
   endpoints:

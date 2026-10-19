@@ -15,5 +15,21 @@
     "fr": "Français",
     "ar": "العربية",
     "en": "English"
+  },
+  "login": {
+    "title": "Connexion à l'espace Kadoo",
+    "email": "Adresse email",
+    "password": "Mot de passe",
+    "submit": "Se connecter",
+    "submitting": "Connexion…",
+    "invalidCredentials": "Email ou mot de passe incorrect.",
+    "unexpectedError": "Connexion impossible pour le moment. Réessayez dans quelques instants."
+  },
+  "backOffice": {
+    "adminTitle": "Tableau de bord Admin",
+    "partnerTitle": "Tableau de bord partenaire",
+    "signedInAs": "Connecté en tant que",
+    "logout": "Se déconnecter",
+    "comingSoon": "Les indicateurs arriveront avec les prochaines fonctionnalités."
   }
 }

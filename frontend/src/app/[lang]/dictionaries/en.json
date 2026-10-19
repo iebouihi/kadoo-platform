@@ -15,5 +15,21 @@
     "fr": "Français",
     "ar": "العربية",
     "en": "English"
+  },
+  "login": {
+    "title": "Sign in to Kadoo",
+    "email": "Email address",
+    "password": "Password",
+    "submit": "Sign in",
+    "submitting": "Signing in…",
+    "invalidCredentials": "Incorrect email or password.",
+    "unexpectedError": "Unable to sign in right now. Please try again in a moment."
+  },
+  "backOffice": {
+    "adminTitle": "Admin dashboard",
+    "partnerTitle": "Partner dashboard",
+    "signedInAs": "Signed in as",
+    "logout": "Sign out",
+    "comingSoon": "Indicators will arrive with upcoming features."
   }
 }

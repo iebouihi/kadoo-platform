@@ -23,8 +23,127 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Language"
+  /auth/csrf:
+    get:
+      operationId: getCsrfToken
+      summary: Dépose le cookie XSRF-TOKEN avant une mutation (KAN-17, NFR-002)
+      description: |
+        Le jeton est renvoyé dans le cookie lisible `XSRF-TOKEN` ; chaque POST/PUT/PATCH/DELETE le recopie dans
+        l'en-tête `X-XSRF-TOKEN`. Sans cet en-tête, la mutation est refusée (403).
+      tags: [identity]
+      responses:
+        "204":
+          description: Cookie XSRF-TOKEN déposé.
+  /auth/login:
+    post:
+      operationId: login
+      summary: Connexion back-office par email et mot de passe (KAN-17)
+      description: |
+        Succès : cookie de session `SESSION` (HttpOnly, Secure, SameSite=Lax), renouvelé à la connexion ;
+        inactivité 30 min, durée maximale 8 h. Échec : réponse générique quel que soit le motif (email inconnu,
+        mauvais mot de passe, compte non actif ou verrouillé), pour ne pas révéler l'existence d'un compte (AC2).
+      tags: [identity]
+      parameters:
+        - $ref: "#/components/parameters/CsrfHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: Connecté ; le rôle détermine le tableau de bord d'arrivée.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResult"
+        "400":
+          description: Requête invalide (email ou mot de passe absent).
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "401":
+          description: "Identifiants refusés — code `INVALID_CREDENTIALS`."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+  /auth/logout:
+    post:
+      operationId: logout
+      summary: Déconnexion, la session est invalidée (KAN-17)
+      tags: [identity]
+      parameters:
+        - $ref: "#/components/parameters/CsrfHeader"
+      responses:
+        "204":
+          description: Session invalidée.
+  /auth/me:
+    get:
+      operationId: getCurrentUser
+      summary: Utilisateur connecté (KAN-17)
+      tags: [identity]
+      security:
+        - session: []
+      responses:
+        "200":
+          description: Utilisateur de la session.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CurrentUser"
+        "401":
+          description: Pas de session, ou session expirée (AC5) — le frontend redirige vers la connexion.
 components:
+  securitySchemes:
+    session:
+      type: apiKey
+      in: cookie
+      name: SESSION
+  parameters:
+    CsrfHeader:
+      name: X-XSRF-TOKEN
+      in: header
+      required: true
+      description: Valeur du cookie XSRF-TOKEN (voir getCsrfToken).
+      schema:
+        type: string
   schemas:
+    Role:
+      type: string
+      enum: [ADMIN, PARTNER_MANAGER]
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        password:
+          type: string
+          format: password
+          maxLength: 200
+    LoginResult:
+      type: object
+      required: [role]
+      properties:
+        role:
+          $ref: "#/components/schemas/Role"
+    CurrentUser:
+      type: object
+      required: [email, role]
+      properties:
+        email:
+          type: string
+        role:
+          $ref: "#/components/schemas/Role"
+        partnerId:
+          type: string
+          format: uuid
+          description: Partenaire du gestionnaire ; absent pour un Admin.
     Language:
       type: object
       required: [code, nativeName, direction, isDefault]
@@ -64,5 +183,8 @@ components:
         detail: { type: string }
         code:
           type: string
-          examples: [CARD_ALREADY_REDEEMED]
+          description: |
+            Codes en vigueur : `INVALID_CREDENTIALS` (KAN-17), `RESOURCE_NOT_FOUND` (ressource absente ou
+            d'un autre partenaire, NFR-003).
+          examples: [INVALID_CREDENTIALS]
         correlationId: { type: string }

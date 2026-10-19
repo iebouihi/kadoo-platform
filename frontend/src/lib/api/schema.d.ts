@@ -21,10 +21,107 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/auth/csrf": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Dépose le cookie XSRF-TOKEN avant une mutation (KAN-17, NFR-002)
+         * @description Le jeton est renvoyé dans le cookie lisible `XSRF-TOKEN` ; chaque POST/PUT/PATCH/DELETE le recopie dans
+         *     l'en-tête `X-XSRF-TOKEN`. Sans cet en-tête, la mutation est refusée (403).
+         */
+        get: operations["getCsrfToken"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth/login": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Connexion back-office par email et mot de passe (KAN-17)
+         * @description Succès : cookie de session `SESSION` (HttpOnly, Secure, SameSite=Lax), renouvelé à la connexion ;
+         *     inactivité 30 min, durée maximale 8 h. Échec : réponse générique quel que soit le motif (email inconnu,
+         *     mauvais mot de passe, compte non actif ou verrouillé), pour ne pas révéler l'existence d'un compte (AC2).
+         */
+        post: operations["login"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth/logout": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Déconnexion, la session est invalidée (KAN-17) */
+        post: operations["logout"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Utilisateur connecté (KAN-17) */
+        get: operations["getCurrentUser"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** @enum {string} */
+        Role: "ADMIN" | "PARTNER_MANAGER";
+        LoginRequest: {
+            /** Format: email */
+            email: string;
+            /** Format: password */
+            password: string;
+        };
+        LoginResult: {
+            role: components["schemas"]["Role"];
+        };
+        CurrentUser: {
+            email: string;
+            role: components["schemas"]["Role"];
+            /**
+             * Format: uuid
+             * @description Partenaire du gestionnaire ; absent pour un Admin.
+             */
+            partnerId?: string;
+        };
         Language: {
             /**
              * @description Locale BCP 47.
@@ -50,13 +147,20 @@ export interface components {
             title: string;
             status: number;
             detail?: string;
-            /** @example CARD_ALREADY_REDEEMED */
+            /**
+             * @description Codes en vigueur : `INVALID_CREDENTIALS` (KAN-17), `RESOURCE_NOT_FOUND` (ressource absente ou
+             *     d'un autre partenaire, NFR-003).
+             * @example INVALID_CREDENTIALS
+             */
             code: string;
             correlationId?: string;
         };
     };
     responses: never;
-    parameters: never;
+    parameters: {
+        /** @description Valeur du cookie XSRF-TOKEN (voir getCsrfToken). */
+        CsrfHeader: string;
+    };
     requestBodies: never;
     headers: never;
     pathItems: never;
@@ -80,6 +184,117 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["Language"][];
                 };
+            };
+        };
+    };
+    getCsrfToken: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Cookie XSRF-TOKEN déposé. */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    login: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description Valeur du cookie XSRF-TOKEN (voir getCsrfToken). */
+                "X-XSRF-TOKEN": components["parameters"]["CsrfHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LoginRequest"];
+            };
+        };
+        responses: {
+            /** @description Connecté ; le rôle détermine le tableau de bord d'arrivée. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LoginResult"];
+                };
+            };
+            /** @description Requête invalide (email ou mot de passe absent). */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+            /** @description Identifiants refusés — code `INVALID_CREDENTIALS`. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": components["schemas"]["Problem"];
+                };
+            };
+        };
+    };
+    logout: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description Valeur du cookie XSRF-TOKEN (voir getCsrfToken). */
+                "X-XSRF-TOKEN": components["parameters"]["CsrfHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Session invalidée. */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    getCurrentUser: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Utilisateur de la session. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CurrentUser"];
+                };
+            };
+            /** @description Pas de session, ou session expirée (AC5) — le frontend redirige vers la connexion. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };
