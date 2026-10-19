@@ -39,6 +39,9 @@ public class AuditEvent {
     @Column(name = "changes", updatable = false)
     private String changes;
 
+    @Column(name = "ip", updatable = false)
+    private String ip;
+
     @Column(name = "correlation_id", updatable = false)
     private String correlationId;
 
@@ -55,6 +58,7 @@ public class AuditEvent {
             String actorId,
             UUID partnerId,
             String changes,
+            String ip,
             String correlationId,
             Instant occurredAt) {
         this.id = UUID.randomUUID();
@@ -65,11 +69,28 @@ public class AuditEvent {
         this.actorId = actorId;
         this.partnerId = partnerId;
         this.changes = changes;
+        this.ip = ip;
         this.correlationId = correlationId;
         this.occurredAt = occurredAt;
     }
 
     public UUID getId() {
         return id;
+    }
+
+    public String getEventType() {
+        return eventType;
+    }
+
+    public String getActorType() {
+        return actorType;
+    }
+
+    public String getActorId() {
+        return actorId;
+    }
+
+    public Instant getOccurredAt() {
+        return occurredAt;
     }
 }

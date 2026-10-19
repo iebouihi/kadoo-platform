@@ -41,8 +41,8 @@ class AuditLogIT {
 
     @Test
     void exige_une_transaction_metier() {
-        assertThatThrownBy(() -> auditLog.record(new AuditLog.Entry(
-                        "Language", "fr-MA", "X", AuditLog.ActorType.SYSTEM, null, null, null)))
+        assertThatThrownBy(() -> auditLog.record(
+                        new AuditLog.Entry("Language", "fr-MA", "X", AuditLog.ActorType.SYSTEM, null, null, null)))
                 .isInstanceOf(org.springframework.transaction.IllegalTransactionStateException.class);
     }
 }
