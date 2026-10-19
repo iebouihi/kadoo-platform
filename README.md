@@ -18,12 +18,15 @@ Prérequis : Java 21, Maven 3.9+, Node.js 22+, Docker. Poste complet, IDE et lic
 docker compose up -d                         # PostgreSQL, Mailpit (http://localhost:8025), WireMock (PSP simulé)
 
 cd backend
+# Premier compte Admin (KAN-17), créé au démarrage s'il n'existe aucun Admin — valeurs locales et fictives :
+export KADOO_BOOTSTRAP_ADMIN_EMAIL=admin@kadoo.test KADOO_BOOTSTRAP_ADMIN_PASSWORD='choisir-10-caracteres-min'
 mvn spring-boot:run -Dspring-boot.run.profiles=local
 # → http://localhost:8080/api/v1/public/languages · http://localhost:8080/swagger-ui.html
 
 cd ../frontend
 npm install
 npm run dev                                  # → http://localhost:3000 (redirige vers /fr, /ar ou /en)
+                                             #   back-office : http://localhost:3000/fr/login (API via KADOO_API_URL)
 ```
 
 ## Vérifier avant une PR

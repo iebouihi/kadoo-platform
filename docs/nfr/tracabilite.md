@@ -5,12 +5,12 @@ l'US indiquée ; la ligne doit passer à « en place » dans la PR correspondant
 
 | NFR | Exigence | Où | État |
 |---|---|---|---|
-| NFR-001 | En-têtes de sécurité | `frontend/next.config.ts`, `backend/.../platform/SecurityConfig.java`, test `e2e/i18n.spec.ts` | en place (base) ; CSP nonce avec KAN-17 |
-| NFR-002 | Sessions back-office | `SecurityConfig` | à venir (KAN-17) |
-| NFR-003 | Isolation partenaire | règle dans `CLAUDE.md`, tests cross-tenant | à venir (KAN-18) |
+| NFR-001 | En-têtes de sécurité | `frontend/next.config.ts`, `frontend/src/proxy.ts` (CSP nonce back-office), `backend/.../platform/SecurityConfig.java`, tests `e2e/i18n.spec.ts`, `e2e/back-office.spec.ts` | en place |
+| NFR-002 | Sessions back-office | Spring Session JDBC, Argon2id, CSRF (`SecurityConfig`, module `identity`, ADR-0007), tests `LoginIT`, `SessionIT` | en place (KAN-17) ; MFA Admin avec KAN-20, révocation avec KAN-19 |
+| NFR-003 | Isolation partenaire | `identity.CurrentUser.partnerId()`, `platform.NotFoundException`, RBAC `/api/v1/admin/**` et `/api/v1/partner/**`, test `CrossTenantIT` | mécanisme en place (KAN-17) ; un test d'accès croisé par endpoint partenaire à venir |
 | NFR-004 | Secrets | `.github/workflows/security.yml` (gitleaks) | en place |
 | NFR-005 | Webhook PSP signé | route `/api/v1/webhooks/**` réservée dans `SecurityConfig` | à venir (KAN-38) |
-| NFR-006 | Limitation de débit | — | à venir (KAN-17, KAN-54) |
+| NFR-006 | Limitation de débit | verrouillage du compte après 5 échecs / 15 min (`LoginIT`) | partiel (KAN-17) ; limitation par IP (Bucket4j) à venir |
 | NFR-007 | Chaîne logicielle | `.github/dependabot.yml`, dependency-review dans `security.yml` | en place |
 | NFR-008 | Contenus utilisateur | ESLint `react/no-danger` | en place (front) |
 | NFR-010/011/012 | Idempotence, concurrence, transactions | `CLAUDE.md` (règle 4), ADR-0004 | à venir (KAN-38, KAN-44, KAN-50) |

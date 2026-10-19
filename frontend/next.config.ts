@@ -32,6 +32,18 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+  /**
+   * Le navigateur appelle l'API sur la même origine (ADR-0007) : le cookie de session reste HttpOnly et
+   * SameSite=Lax, sans CORS. L'adresse du backend n'est connue que du serveur Next.js.
+   */
+  async rewrites() {
+    return [
+      {
+        source: "/api/v1/:path*",
+        destination: `${process.env.KADOO_API_URL ?? "http://localhost:8080"}/api/v1/:path*`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
