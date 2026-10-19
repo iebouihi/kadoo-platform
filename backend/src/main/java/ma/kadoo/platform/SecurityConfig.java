@@ -53,7 +53,10 @@ class SecurityConfig {
                                 "/api/v1/auth/csrf",
                                 "/actuator/health/**",
                                 "/actuator/info",
-                                "/v3/api-docs/**")
+                                "/v3/api-docs/**",
+                                // Swagger UI n'existe qu'en profil local (springdoc.swagger-ui.enabled), 404 ailleurs.
+                                "/swagger-ui.html",
+                                "/swagger-ui/**")
                         .permitAll()
                         .requestMatchers("/api/v1/admin/**")
                         .hasRole("ADMIN")
