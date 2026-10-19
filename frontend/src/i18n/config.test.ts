@@ -10,7 +10,7 @@ function keys(obj: object, prefix = ""): string[] {
   );
 }
 
-describe("resolveLocale (US-040)", () => {
+describe("resolveLocale (KAN-67)", () => {
   it("donne la priorité au choix explicite (cookie) sur le navigateur", () => {
     expect(resolveLocale("ar", "en-US,en;q=0.9")).toBe("ar");
   });
@@ -20,7 +20,7 @@ describe("resolveLocale (US-040)", () => {
   it("accepte les variantes régionales (fr-MA → fr)", () => {
     expect(resolveLocale(undefined, "fr-MA")).toBe("fr");
   });
-  it("se replie sur le français (US-045)", () => {
+  it("se replie sur le français (KAN-72)", () => {
     expect(resolveLocale("xx", "de-DE")).toBe("fr");
     expect(resolveLocale(undefined, null)).toBe("fr");
   });

@@ -18,7 +18,7 @@ public final class BusinessTime {
     private BusinessTime() {}
 
     /**
-     * Expiration d'une carte (US-022) : 23:59:59 heure du Maroc, le jour (émission + validityDays).
+     * Expiration d'une carte (KAN-44) : 23:59:59 heure du Maroc, le jour (émission + validityDays).
      */
     public static Instant expiryOf(Instant issuedAt, int validityDays) {
         if (validityDays <= 0) {

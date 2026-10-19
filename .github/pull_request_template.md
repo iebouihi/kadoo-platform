@@ -1,6 +1,6 @@
 ## User story
 
-US-xxx — <!-- titre -->  · Jira : <!-- lien -->
+KAN-yy — <!-- titre -->  · Jira : <!-- lien -->
 
 ## Ce qui change
 

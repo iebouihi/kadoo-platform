@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
  * <ul>
  *   <li>/api/v1/public/** : lecture publique (catalogue, langues, page cadeau).
  *   <li>/api/v1/webhooks/** : notifications PSP, authentifiées par signature dans le module payment (NFR-005).
- *   <li>Tout le reste : authentifié. La connexion back-office (US-001) remplacera l'authentification par défaut.
+ *   <li>Tout le reste : authentifié. La connexion back-office (KAN-17) remplacera l'authentification par défaut.
  * </ul>
  */
 @Configuration

@@ -14,6 +14,6 @@ avec Cache Components. À réévaluer si le besoin de pluriels / formats complex
 
 ## Conséquences
 
-- Pages publiques prérendues : performance (NFR-020) et aperçus de partage (US-012).
+- Pages publiques prérendues : performance (NFR-020) et aperçus de partage (KAN-31).
 - Le frontend ne contient aucune règle métier ni contrôle d'autorisation de confiance (NFR-003).
 - Image Docker `standalone`.

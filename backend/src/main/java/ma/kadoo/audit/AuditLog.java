@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * API du module audit (US-038). Appelée dans la transaction de l'action métier :
+ * API du module audit (KAN-65). Appelée dans la transaction de l'action métier :
  * si l'action est annulée, l'événement l'est aussi.
  */
 @Service
@@ -83,7 +83,7 @@ public class AuditLog {
     }
 
     /**
-     * Filet de sécurité de la RG2 (US-038) : refuse les champs dont le nom désigne un secret (mot de passe, code
+     * Filet de sécurité de la RG2 (KAN-65) : refuse les champs dont le nom désigne un secret (mot de passe, code
      * d'utilisation, jeton, donnée bancaire). Seules les clés sont inspectées, jamais les valeurs : la garantie
      * reste que l'appelant ne transmette pas de secret. Le message ne reprend aucune valeur.
      */

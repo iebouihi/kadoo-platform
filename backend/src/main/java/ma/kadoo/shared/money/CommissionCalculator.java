@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
- * Calcul de la commission Kadoo et de la part partenaire (US-019).
+ * Calcul de la commission Kadoo et de la part partenaire (KAN-39).
  *
  * <ul>
  *   <li>Base = montant payé TTC (hypothèse D-02).
@@ -30,7 +30,7 @@ public final class CommissionCalculator {
         return new Split(base, ratePercent, commission, base.minus(commission));
     }
 
-    /** Taux contractuel entre 3,00 % et 10,00 %, 2 décimales maximum (US-005). */
+    /** Taux contractuel entre 3,00 % et 10,00 %, 2 décimales maximum (KAN-22). */
     public static void requireValidRate(BigDecimal ratePercent) {
         Objects.requireNonNull(ratePercent, "ratePercent");
         if (ratePercent.compareTo(MIN_RATE_PERCENT) < 0 || ratePercent.compareTo(MAX_RATE_PERCENT) > 0) {

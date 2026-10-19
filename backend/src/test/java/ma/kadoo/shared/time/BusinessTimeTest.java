@@ -7,7 +7,7 @@ import java.time.Instant;
 import java.time.ZonedDateTime;
 import org.junit.jupiter.api.Test;
 
-/** Règle d'expiration de US-022 / US-029 et NFR-015. */
+/** Règle d'expiration de KAN-44 / KAN-52 et NFR-015. */
 class BusinessTimeTest {
 
     @Test

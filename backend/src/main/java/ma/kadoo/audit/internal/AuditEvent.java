@@ -8,7 +8,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 /**
- * Événement d'audit (US-038). Écriture seule : la base refuse UPDATE et DELETE (migration V2).
+ * Événement d'audit (KAN-65). Écriture seule : la base refuse UPDATE et DELETE (migration V2).
  * Ne jamais y mettre de secret : mot de passe, code d'utilisation, jeton, donnée bancaire.
  */
 @Entity

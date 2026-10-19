@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.support.TransactionTemplate;
 
-/** US-038 : chronologie d'une entité (AC1), absence de secrets dans le journal (AC2, RG2), adresse IP. */
+/** KAN-65 : chronologie d'une entité (AC1), absence de secrets dans le journal (AC2, RG2), adresse IP. */
 @SpringBootTest
 @Import(TestcontainersConfiguration.class)
 class AuditTimelineIT {

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Lecture du journal d'audit (US-038, AC1) : chronologie d'une entité, de l'événement le plus ancien au plus récent.
- * Aucun endpoint HTTP pour l'instant : la consultation Admin arrive avec US-001 (rôle ADMIN).
+ * Lecture du journal d'audit (KAN-65, AC1) : chronologie d'une entité, de l'événement le plus ancien au plus récent.
+ * Aucun endpoint HTTP pour l'instant : la consultation Admin arrive avec KAN-17 (rôle ADMIN).
  */
 @Service
 public class AuditTimeline {

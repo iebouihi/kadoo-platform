@@ -1,6 +1,6 @@
 name: User story
 description: Une US du backlog Kadoo (miroir de Jira)
-title: "US-xxx — "
+title: "KAN-yy — "
 labels: ["user-story"]
 body:
   - type: input

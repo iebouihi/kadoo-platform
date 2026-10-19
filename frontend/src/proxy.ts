@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 import { LOCALE_COOKIE, locales, resolveLocale } from "@/i18n/config";
 
 /**
- * Redirige toute URL sans préfixe de langue vers /fr, /ar ou /en (US-040).
+ * Redirige toute URL sans préfixe de langue vers /fr, /ar ou /en (KAN-67).
  * Aucun contrôle d'autorisation ici : la sécurité est assurée par le backend (NFR-003).
  */
 export function proxy(request: NextRequest) {

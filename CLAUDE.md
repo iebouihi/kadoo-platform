@@ -10,10 +10,11 @@ Plateforme marocaine B2B2C de cartes cadeaux 100 % digitales. Un partenaire publ
 partenaire. Kadoo prélève une commission de 3 à 10 %. Devise MAD, langues fr-MA (défaut), ar-MA (RTL), en.
 
 - **Jira** projet `KAN` (serveur MCP `atlassian`, voir `.mcp.json`) : les 60 stories avec leurs critères
-  d'acceptation **en vigueur** et leur statut. Correspondance `US-xxx` ↔ `KAN-yy` : `docs/backlog/jira-mapping.md`.
+  d'acceptation **en vigueur** et leur statut.
 - Backlog Excel : `docs/backlog/Kadoo_Backlog_MVP_v1.2.xlsx` — référence pour les décisions (onglet 06),
   le modèle de données (05), les cycles de vie (04), les NFR (07) et le SDLC IA (09).
-- Une US = un identifiant `US-xxx` (libellé Jira) = une clé `KAN-yy`. Pas de code sans US ; pas de règle métier inventée.
+- Une US = une clé Jira `KAN-yy`, seul identifiant utilisé partout (code, branches, commits, PR, docs). Pas de code
+  sans US ; pas de règle métier inventée.
 - En cas d'écart entre Jira et l'Excel sur les critères d'acceptation, **Jira fait foi** : le signaler au PO.
 
 ## Le dépôt
@@ -38,7 +39,7 @@ partenaire. Kadoo prélève une commission de 3 à 10 %. Devise MAD, langues fr-
    une contrainte d'unicité en base, pas seulement par du code.
 5. **Secrets** (NFR-004) : codes d'utilisation et jetons stockés en HMAC/hash ; rien de sensible dans les
    logs, l'audit, les prompts ou les tests.
-6. **Audit** (US-038) : chaque action métier appelle `AuditLog.record(...)` dans sa transaction.
+6. **Audit** (KAN-65) : chaque action métier appelle `AuditLog.record(...)` dans sa transaction.
 7. **i18n** (NFR-080/081) : aucune chaîne en dur dans le frontend ; les 3 catalogues ont les mêmes clés
    (test automatique) ; vérifier chaque écran en `/ar` (RTL).
 8. **Contrat** (NFR-041) : modifier `contracts/openapi.yaml` d'abord, régénérer le client, puis implémenter.
@@ -66,14 +67,14 @@ Lire `frontend/AGENTS.md` : cette version de Next.js diffère de ce que les mod�
 
 ## Flux de travail par US (onglet 09 du backlog)
 
-1. Lire la story dans Jira via le MCP (`KAN-yy`, ou recherche par libellé `US-xxx`) : description, RG, AC,
+1. Lire la story dans Jira via le MCP (`KAN-yy`) : description, RG, AC,
    dépendances, décisions liées. Si une décision est ouverte ou si une dépendance n'est pas livrée, s'arrêter et demander.
 2. Proposer un plan (fichiers, migrations, endpoints, tests) et le faire valider ; une fois validé, le poster en
    commentaire sur la story et, si le développeur le demande, passer la story « In Progress ».
 3. Écrire les tests des critères d'acceptation **avant** le code.
 4. Implémenter jusqu'au vert, sans désactiver ni affaiblir un test ou une règle.
 5. Lancer les commandes de vérification ci-dessus.
-6. Branche `feat/US-xxx-description`, commits `US-xxx: …`, PR `US-xxx (KAN-yy) — titre` avec le modèle
+6. Branche `feat/KAN-yy-description`, commits `KAN-yy: …`, PR `KAN-yy — titre` avec le modèle
    (assistance IA déclarée) ; commenter la story avec le lien de la PR.
 
 Dans Jira, l'agent ne passe jamais une story à « Done », ne crée ni ne supprime de story et ne modifie jamais

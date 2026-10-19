@@ -48,7 +48,9 @@ revue par un senior et un second relecteur, tests de concurrence et de sécurit�
 
 Le backlog est chargé dans Jira, projet **Kadoo** (`KAN`) : 13 epics (`KAN-4` à `KAN-16`) et 60 stories (`KAN-17` à
 `KAN-76`), avec description, règles de gestion, critères d'acceptation, dépendances et décisions liées.
-Correspondance complète `US-xxx` ↔ `KAN-yy` : `docs/backlog/jira-mapping.md`.
+La clé Jira `KAN-yy` est l'**unique identifiant** d'une story : code, tests, branches, commits, PR et documentation
+n'en utilisent pas d'autre. Les anciens identifiants `US-xxx` ont été retirés le 19/10/2026 ; seules les migrations
+Flyway V1 à V3, déjà fusionnées et donc immuables, les citent encore en commentaire.
 
 **Répartition des rôles**
 
@@ -60,7 +62,7 @@ Correspondance complète `US-xxx` ↔ `KAN-yy` : `docs/backlog/jira-mapping.md`.
 
 **Ce que l'agent fait via le MCP Atlassian**
 
-- Lire la story (`KAN-xx` ou libellé `US-xxx`) **avant** tout plan ; si les critères diffèrent du fichier Excel, Jira
+- Lire la story (`KAN-yy`) **avant** tout plan ; si les critères diffèrent du fichier Excel, Jira
   fait foi et l'écart est signalé au PO.
 - Commenter la story : plan validé, lien de la PR, hypothèses retenues, questions ouvertes.
 - Faire passer la story de « To Do » à « In Progress » au démarrage, puis « In Review » à l'ouverture de la PR,
@@ -77,7 +79,7 @@ avec son propre compte Atlassian (`/mcp` dans Claude Code). Les droits de l'agen
 
 ## 8. Traçabilité
 
-- Branche `feat/US-xxx-description`, commits `US-xxx: …`, PR titrée `US-xxx (KAN-yy) — …` avec le lien Jira.
+- Branche `feat/KAN-yy-description`, commits `KAN-yy: …`, PR titrée `KAN-yy — …` avec le lien Jira.
 - La PR indique si l'IA a été utilisée et sur quelles parties.
 - Les commandes et fichiers de contexte IA sont versionnés (`CLAUDE.md`, `.claude/`, `.mcp.json`) et revus comme du code.
 
