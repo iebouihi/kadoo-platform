@@ -4,10 +4,10 @@ Marketplace marocaine B2B2C : les partenaires publient des cartes cadeaux, les a
 par email ou WhatsApp, les bénéficiaires les utilisent chez le partenaire. MAD · français, arabe (RTL), anglais.
 
 > État : **Sprint 0** — socle technique, garde-fous NFR et outillage IA en place ; premier module pilote `i18n`
-> (US-039). Les US métier démarrent au Lot 1 (voir backlog).
+> (KAN-66). Les US métier démarrent au Lot 1 (voir backlog).
 >
-> Backlog : [Jira KAN](https://imadeddineb.atlassian.net/jira/software/projects/KAN) — 13 epics, 60 stories ·
-> correspondance `US-xxx` ↔ `KAN-yy` dans [`docs/backlog/jira-mapping.md`](docs/backlog/jira-mapping.md).
+> Backlog : [Jira KAN](https://imadeddineb.atlassian.net/jira/software/projects/KAN) — 13 epics, 60 stories.
+> Chaque story est identifiée uniquement par sa clé Jira `KAN-yy`.
 
 ## Démarrer
 
@@ -40,7 +40,7 @@ backend/      Java 21 · Spring Boot 4 · monolithe modulaire (ma.kadoo.<module>
 frontend/     Next.js 16 · TypeScript strict · App Router · routes /[lang]
 contracts/    openapi.yaml — contrat d'API unique (source de vérité)
 docs/
-  backlog/    Kadoo_Backlog_MVP_v1.2.xlsx + jira-mapping.md (US ↔ KAN)
+  backlog/    Kadoo_Backlog_MVP_v1.2.xlsx (décisions, modèle de données, NFR)
   adr/        décisions d'architecture
   ai/         politique d'usage de l'IA (dont règles Jira / MCP)
   dev/        environnement de développement : outils, IDE, licences Claude
@@ -52,13 +52,13 @@ infra/        simulateurs locaux (WireMock)
 
 ## Comment on travaille
 
-- **Une US = une branche** `feat/US-xxx-…`, des commits `US-xxx: …`, une PR avec le modèle fourni.
+- **Une US = une branche** `feat/KAN-yy-…`, des commits `KAN-yy: …`, une PR avec le modèle fourni.
 - **Contrat d'abord** : on modifie `contracts/openapi.yaml`, puis `npm run gen:api`, puis on implémente.
 - **Tests d'abord** : chaque critère d'acceptation devient un test avant le code.
 - **IA** : assistants autorisés selon `docs/ai/politique-usage-ia.md`. Les agents lisent `CLAUDE.md` et disposent de
   commandes dans `.claude/commands/` :
-  - `/implement-us US-039` — flux complet plan → tests → code → vérification
-  - `/tests-from-ac US-019` — tests des critères d'acceptation seulement
+  - `/implement-us KAN-66` — flux complet plan → tests → code → vérification
+  - `/tests-from-ac KAN-39` — tests des critères d'acceptation seulement
   - `/security-review` — revue de sécurité des changements
   - `/rtl-check src/app/[lang]/page.tsx` — contrôle arabe / RTL
 - **Revue humaine obligatoire** sur chaque PR ; double revue sur paiement, émission, utilisation, commission,
@@ -69,7 +69,7 @@ infra/        simulateurs locaux (WireMock)
 | Garde-fou | NFR |
 |---|---|
 | Frontières de modules (Spring Modulith) et règles ArchUnit (pas de `double`, pas d'`Instant.now()`, pas de `System.out`) | NFR-040, NFR-014, NFR-015 |
-| Audit en écriture seule garanti par la base (trigger) | US-038 |
+| Audit en écriture seule garanti par la base (trigger) | KAN-65 |
 | Catalogues fr / ar / en identiques, `dir="rtl"` testé, axe WCAG 2.1 AA | NFR-080, NFR-081, NFR-070 |
 | Contrat OpenAPI et types frontend synchronisés | NFR-041 |
 | Secrets (gitleaks), dépendances vulnérables, Dependabot | NFR-004, NFR-007 |

@@ -12,7 +12,7 @@ publiques exigé par NFR-020.
 
 - Toutes les réponses : HSTS, `nosniff`, `Referrer-Policy`, `Permissions-Policy` (caméra autorisée pour le scan QR),
   CSP de base `frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'` (`next.config.ts`).
-- Back-office (pages dynamiques) : CSP complète avec nonce générée dans `src/proxy.ts`, à ajouter avec US-001.
+- Back-office (pages dynamiques) : CSP complète avec nonce générée dans `src/proxy.ts`, à ajouter avec KAN-17.
 - Pages publiques : `script-src` restreint par hash ou SRI, à décider après mesure de performance.
 
 ## Conséquences

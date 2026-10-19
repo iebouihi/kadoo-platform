@@ -1,7 +1,7 @@
 /**
  * Module notification — Modèles localisés et envoi des notifications.
  *
- * <p>User stories : US-036, US-037, US-044. À implémenter selon le flux décrit dans CLAUDE.md.
+ * <p>User stories : KAN-63, KAN-64, KAN-71. À implémenter selon le flux décrit dans CLAUDE.md.
  * Les classes publiques de ce package forment l'API du module ; tout le reste va dans des sous-packages
  * (ex. notification.internal), invisibles des autres modules (vérifié par ModularityTests).
  */

@@ -1,6 +1,6 @@
 # ADR-0004 — Traitements asynchrones par outbox transactionnelle
 
-- Statut : proposée (à appliquer avec US-018 / US-022)
+- Statut : proposée (à appliquer avec KAN-38 / KAN-44)
 - Date : 2026-10-16
 
 ## Décision

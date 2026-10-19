@@ -30,7 +30,7 @@ export default async function Home() {
 
       <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm">
         <dt>{dict.home.sampleAmountLabel}</dt>
-        {/* Montants et dates isolés en LTR dans une phrase RTL (US-046) */}
+        {/* Montants et dates isolés en LTR dans une phrase RTL (KAN-73) */}
         <dd>
           <bdi>{formatMoney("1250.00", locale)}</bdi>
         </dd>

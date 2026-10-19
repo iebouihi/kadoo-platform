@@ -7,7 +7,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-/** Langue de la plateforme (US-039). Données de référence initialisées par la migration V1. */
+/** Langue de la plateforme (KAN-66). Données de référence initialisées par la migration V1. */
 @Entity
 @Table(name = "language")
 public class Language {

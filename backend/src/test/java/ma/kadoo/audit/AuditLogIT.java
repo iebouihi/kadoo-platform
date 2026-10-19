@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.support.TransactionTemplate;
 
-/** US-038 : le journal d'audit est en écriture seule, garanti par la base elle-même. */
+/** KAN-65 : le journal d'audit est en écriture seule, garanti par la base elle-même. */
 @SpringBootTest
 @Import(TestcontainersConfiguration.class)
 class AuditLogIT {

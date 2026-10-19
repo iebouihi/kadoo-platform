@@ -3,7 +3,7 @@ import { BUSINESS_TIME_ZONE, bcp47, type Locale } from "@/i18n/config";
 /**
  * Les montants circulent en chaîne décimale ("1250.00") et ne sont jamais recalculés côté client (NFR-014).
  * Number() n'est utilisé ici que pour l'affichage, jamais pour un calcul métier.
- * Chiffres occidentaux en arabe : usage marocain (US-046).
+ * Chiffres occidentaux en arabe : usage marocain (KAN-73).
  */
 export function formatMoney(amount: string, locale: Locale, currency = "MAD"): string {
   if (!/^-?\d+(\.\d{1,2})?$/.test(amount)) {

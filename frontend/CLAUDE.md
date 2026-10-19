@@ -6,7 +6,7 @@ Règles générales : voir `../CLAUDE.md`. Spécifique au frontend :
 
 - **Lire la doc embarquée** de Next.js (`node_modules/next/dist/docs/`) avant d'utiliser une API : cette version
   (16.x, `proxy.ts`, Cache Components, `next/root-params`) diffère des données d'entraînement des modèles.
-- **Composants serveur par défaut.** `"use client"` seulement pour l'interactivité (ex. lecteur QR US-026).
+- **Composants serveur par défaut.** `"use client"` seulement pour l'interactivité (ex. lecteur QR KAN-49).
 - **Aucune règle métier, aucun contrôle d'autorisation de confiance** : le frontend affiche et appelle l'API.
 - **Textes** : ajouter chaque clé dans `fr.json`, `ar.json` et `en.json` (le test `config.test.ts` échoue sinon).
   Les textes arabes sont relus par un locuteur natif avant fusion.

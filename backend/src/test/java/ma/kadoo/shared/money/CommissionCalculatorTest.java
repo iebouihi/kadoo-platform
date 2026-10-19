@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-/** Critères d'acceptation de US-019 et règles de US-005. */
+/** Critères d'acceptation de KAN-39 et règles de KAN-22. */
 class CommissionCalculatorTest {
 
     @ParameterizedTest(name = "{0} MAD à {1} % → commission {2}, partenaire {3}")
     @CsvSource({
-        "500.00, 7.50, 37.50, 462.50", // US-019 AC1
-        "199.99, 3.33, 6.66, 193.33", // US-019 AC2 (6.659667 arrondi HALF_UP)
+        "500.00, 7.50, 37.50, 462.50", // KAN-39 AC1
+        "199.99, 3.33, 6.66, 193.33", // KAN-39 AC2 (6.659667 arrondi HALF_UP)
         "100.00, 3.00, 3.00, 97.00", // borne basse
         "100.00, 10.00, 10.00, 90.00", // borne haute
         "0.10, 5.00, 0.01, 0.09" // 0.005 arrondi au centime supérieur

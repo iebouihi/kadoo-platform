@@ -15,7 +15,7 @@ public class Languages {
         this.repository = repository;
     }
 
-    /** Langues actives, la langue par défaut en premier (US-039). */
+    /** Langues actives, la langue par défaut en premier (KAN-66). */
     @Transactional(readOnly = true)
     public List<LanguageView> active() {
         return repository.findByActiveTrueOrderByDefaultLanguageDescCodeAsc().stream()

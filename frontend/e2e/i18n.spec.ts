@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-test.describe("Langues et RTL (US-040, US-046)", () => {
+test.describe("Langues et RTL (KAN-67, KAN-73)", () => {
   test("la racine redirige vers la langue du navigateur", async ({ browser }) => {
     const context = await browser.newContext({ locale: "ar-MA" });
     const page = await context.newPage();

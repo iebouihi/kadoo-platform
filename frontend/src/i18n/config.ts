@@ -1,5 +1,5 @@
 /**
- * Langues de l'interface (US-039, US-040, US-045, US-046).
+ * Langues de l'interface (KAN-66, KAN-67, KAN-72, KAN-73).
  * Le segment d'URL est court (/fr, /ar, /en) ; le code métier est la locale BCP 47 utilisée par le backend.
  */
 export const locales = ["fr", "ar", "en"] as const;
@@ -7,7 +7,7 @@ export type Locale = (typeof locales)[number];
 
 export const defaultLocale: Locale = "fr";
 
-/** Cookie posé quand l'utilisateur choisit explicitement une langue (prioritaire, US-040). */
+/** Cookie posé quand l'utilisateur choisit explicitement une langue (prioritaire, KAN-67). */
 export const LOCALE_COOKIE = "KADOO_LOCALE";
 
 export const bcp47: Record<Locale, string> = {
@@ -30,7 +30,7 @@ export function isLocale(value: string | undefined | null): value is Locale {
 }
 
 /**
- * Ordre de résolution (US-040) : choix explicite (cookie) > langue du navigateur > fr.
+ * Ordre de résolution (KAN-67) : choix explicite (cookie) > langue du navigateur > fr.
  * Le préfixe d'URL, quand il existe, est traité avant l'appel (il gagne toujours).
  */
 export function resolveLocale(cookieValue: string | undefined, acceptLanguage: string | null): Locale {

@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
-/** US-039 — critères d'acceptation, de bout en bout sur HTTP et une vraie base PostgreSQL. */
+/** KAN-66 — critères d'acceptation, de bout en bout sur HTTP et une vraie base PostgreSQL. */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import(TestcontainersConfiguration.class)
 class LanguageApiIT {

@@ -11,7 +11,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Langues actives de la plateforme (US-039) */
+        /** Langues actives de la plateforme (KAN-66) */
         get: operations["listActiveLanguages"];
         put?: never;
         post?: never;
