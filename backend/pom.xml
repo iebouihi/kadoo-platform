@@ -26,7 +26,7 @@
     <archunit.version>1.4.1</archunit.version>
     <testcontainers.version>2.0.5</testcontainers.version>
     <jacoco.version>0.8.13</jacoco.version>
-    <spotless.version>2.44.5</spotless.version>
+    <spotless.version>3.10.4</spotless.version>
     <bouncycastle.version>1.81</bouncycastle.version>
   </properties>
 
