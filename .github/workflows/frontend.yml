@@ -2,10 +2,10 @@ name: frontend
 
 on:
   pull_request:
-    paths: ["frontend/**", "contracts/**", ".github/workflows/frontend.yml"]
+    paths: ["frontend/**", "contracts/**", "backend/**", ".github/workflows/frontend.yml"]
   push:
     branches: [main]
-    paths: ["frontend/**", "contracts/**", ".github/workflows/frontend.yml"]
+    paths: ["frontend/**", "contracts/**", "backend/**", ".github/workflows/frontend.yml"]
 
 permissions:
   contents: read
@@ -17,7 +17,19 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
+    # Base des tests e2e de connexion (login.spec.ts), qui passent par le vrai backend.
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: kadoo
+          POSTGRES_USER: kadoo
+          POSTGRES_PASSWORD: kadoo
+          TZ: UTC
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U kadoo" --health-interval 5s --health-retries 10
     defaults:
       run:
         working-directory: frontend
@@ -28,6 +40,11 @@ jobs:
           node-version: "22"
           cache: npm
           cache-dependency-path: frontend/package-lock.json
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
       - run: npm ci
       - name: Contrat d'API à jour (NFR-041)
         run: npm run check:api
@@ -38,7 +55,7 @@ jobs:
       - run: npm run build
       - name: Navigateurs Playwright
         run: npx playwright install --with-deps chromium
-      - name: Tests E2E (RTL, accessibilité, en-têtes — NFR-001, NFR-070, NFR-081)
+      - name: Tests E2E (connexion avec le vrai backend, RTL, accessibilité, en-têtes — KAN-17, NFR-001, NFR-070, NFR-081)
         run: npm run test:e2e
       - name: Rapport Playwright
         if: failure()
